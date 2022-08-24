@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".MainActivity">
+
+    <!-- Top Layout : 프로그레스바, 출근시간, 현재 시간, 퇴근시간-->
+    <LinearLayout
+        android:id="@+id/layout_Top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/purple_500"
+        android:orientation="vertical">
+
+        <!-- 프로그레스바(일 진행률) -->
+        <ProgressBar
+            android:id="@+id/progressBar_GetOffWork"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_weight="2"
+            android:paddingLeft="25dp"
+            android:paddingTop="12dp"
+            android:paddingRight="25dp"
+            android:paddingBottom="12dp"
+            android:progressBackgroundTint="@color/white"
+            android:progressTint="@color/teal_700" />
+
+        <!-- 출근시간, 현재시간, 퇴근시간 -->
+        <LinearLayout
+            android:id="@+id/layout_TopCenter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!--출근시간-->
+            <LinearLayout
+                android:id="@+id/layout_GoToWork"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/progressBar_GetOffWork"
+                android:layout_gravity="left"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvGoToWorkName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/progressBar_GetOffWork"
+                    android:layout_marginLeft="20dp"
+                    android:text="출근시간"
+                    android:textColor="#000000"
+                    android:textSize="15dp"></TextView>
+
+                <TextView
+                    android:id="@+id/tvGTW"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvGoToWorkName"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="#000000"
+                    android:text="00시 00분"
+                    android:textSize="15dp"></TextView>
+            </LinearLayout>
+
+            <!--현재시간-->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:id="@+id/layout_Date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/progressBar_GetOffWork"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="현재 날짜"
+                    android:textColor="#000000"
+                    android:textSize="15dp"></TextView>
+
+                <TextView
+                    android:id="@+id/tvTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvDate"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center_horizontal"
+                    android:text="null시 null분"
+                    android:textColor="#000000"
+                    android:textSize="15dp"></TextView>
+            </LinearLayout>
+
+            <!--퇴근시간-->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:id="@+id/layout_GetOffWork"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/progressBar_GetOffWork"
+                android:gravity="right"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvGetOffWorkName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/progressBar_GetOffWork"
+                    android:layout_marginRight="20dp"
+                    android:text="퇴근시간"
+                    android:textColor="#000000"
+                    android:textSize="15dp"></TextView>
+
+                <TextView
+                    android:id="@+id/tvGOW"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvGetOffWorkName"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="00시 00분"
+                    android:textColor="#000000"
+                    android:textSize="15dp"></TextView>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 진행율, 근무일, 월급날, 현재시급-->
+    <LinearLayout
+        android:id="@+id/layout_Center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_Top"
+        android:layout_gravity="left"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/layout_percent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_percent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:paddingLeft="20dp"
+                android:text="진행률 : "
+                android:textColor="#000000"
+                android:textSize="15dp"></TextView>
+
+            <TextView
+                android:id="@+id/percent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00%"
+                android:textColor="#000000"
+                android:textSize="15dp"></TextView>
+        </LinearLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:id="@+id/layout_TodayWork"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/progressBar_GetOffWork"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTodayWork"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="근무일 설정"
+                android:textColor="#000000"
+                android:textSize="15dp"></TextView>
+        </LinearLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:id="@+id/layout_PayDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/progressBar_GetOffWork"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvPayDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="남은 월급날 : "
+                android:textColor="#000000"
+                android:textSize="15dp"></TextView>
+
+            <TextView
+                android:id="@+id/payday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="20dp"
+                android:text="00일"
+                android:textColor="#000000"
+                android:textSize="15dp"></TextView>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 이미지버튼 : 메시지 출력 이벤트 처리 -->
+    <LinearLayout
+        android:id="@+id/layout_CenterImageBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_Center"
+        android:layout_gravity="left"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/imageBtn"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:onClick="onClick"
+            android:src="@drawable/img1"
+            android:padding="0sp"
+            android:scaleType="centerCrop"
+            tools:ignore="OnClick">
+        </ImageButton>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_BottomBtn"
+        android:layout_width="match_parent"
+        android:layout_height="104dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnWorkSetUp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/purple_500"
+            android:text="출근/퇴근\n시간설정"
+            android:textColor="#000000"></Button>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btnClosedSetUp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/purple_500"
+            android:textColor="#000000"
+            android:text="휴무일\n설정"></Button>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btnPaySetUp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/purple_500"
+            android:textColor="#000000"
+            android:text="월급날\n설정"></Button>
+
+    </LinearLayout>
+</RelativeLayout>
+
